@@ -53,7 +53,7 @@ $(function () {
 	function showArtistData(dataArray){
 		obj = dataArray.artist;
 
-		var html = "<br><table class='table-striped' style='width:100%' border=1> ";
+		var html = "<br><table class='table-striped' style='width:100%; border: none;' border=1> ";
 	  	
 		html +=  "<tr><th>Image</th><th>Name</th><th>Actions</th></tr>"
 	
