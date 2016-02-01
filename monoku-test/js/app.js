@@ -16,7 +16,6 @@ $(function () {
 	//seemore button action 0
 	$("#seemorebtn_0").on("click",function (e) {
 		e.preventDefault();
-		
 		console.log(obj[0]);
 		//var  = $("#artistName").val();
 		//getLastFMData(url);
