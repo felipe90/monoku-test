@@ -1,8 +1,6 @@
-var obj;
+var obj; //data artits
 
 $(function () {
-	
-	//var obj; //data artits
 
 	//search button action
 	$("#searchbtn").on("click",function (e) {
@@ -23,8 +21,6 @@ $(function () {
 		//var  = $("#artistName").val();
 		//getLastFMData(url);
 	});
-
-
 
 
 	// http resquest from lastFM
