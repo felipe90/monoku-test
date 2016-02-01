@@ -1,29 +1,38 @@
+var obj;
+
 $(function () {
+	
+	//var obj; //data artits
+
+	//search button action
+	$("#searchbtn").on("click",function (e) {
+		e.preventDefault();
+		var artistName = $("#artistName").val();
+
+		var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.search&artist='+artistName+'&limit=15&api_key=42f75f939105d2110d6a0daf27db431c&format=json';
+		
+		$('#resutlContainer').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>');
+		getLastFMData(url);
+	});
+
+	//seemore button action 0
+	$("#seemorebtn_0").on("click",function (e) {
+		e.preventDefault();
+		
+		console.log(obj[0]);
+		//var  = $("#artistName").val();
+		//getLastFMData(url);
+	});
 
 
-	function showGithubData(data) {
-		if(data.message == "Not Found") {
-        	$('#ghapidata').html("<h2>No User Info Found</h2>");
-      	}
-      
-      	else {
 
-	      	var outhtml = '<h2>'+data.name+' <span class="smallname">(@<a href="'+data.profileurl+'" target="_blank">'+data.login+'</a>)</span></h2>';
-	        outhtml = outhtml + '<div class="ghcontent"><div class="avi"><a href="'+data.html_url+'" target="_blank"><img src="'+data.avatar_url+'" width="80" height="80" alt="'+data.login+'"></a></div>';
-	        outhtml = outhtml + '<p>Followers: '+data.followers+' - Following: '+data.following+'<br>Repos: '+data.public_repos+'</p></div>';
-	        outhtml = outhtml + '<div class="repolist clearfix">';
 
-      		$("#ghapidata").html(outhtml);
-      	}
-
-			
-	}
-
-	function getGithubData (url, githubName) {
+	// http resquest from lastFM
+	function getLastFMData (url) {
 		$.ajax(url)  
 			.done(function(res) {
-			    console.log(res);
-			    showGithubData(res);
+			    var artistArray = parseDataArtist(res);
+			    showArtistData(artistArray);
 			})
 			.fail(function(res) {
 			   	console.log(res);
@@ -31,18 +40,40 @@ $(function () {
 			.always(function(res) {
 				console.log("complete");
 		});
-
-		
 	}
 
-	$("#ghsubmitbtn").on("click",function (e) {
-		e.preventDefault();
-		var gitName = $("#ghusername").val();
+	// parse data artist array
+	function parseDataArtist (data) {
+		var artist = data.results.artistmatches;
+		return artist;
+	}
 
-		var requri   = 'https://api.github.com/users/'+gitName;
-		
-		$('#ghapidata').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>');
-		getGithubData(requri,gitName);
+	// show artist biography
+	function showModalBio (artistData) {
+		html= "";
+	}
 
-	});
-})
+	// render artist data table 
+	function showArtistData(dataArray){
+		obj = dataArray.artist;
+
+		var html = "<br><table class='table-striped' style='width:100%' border=1> ";
+	  	
+		html +=  "<tr><th>Image</th><th>Name</th><th>Actions</th></tr>"
+	
+	  	for (var i = 0; i < obj.length; i++) {
+
+	    	html += "<tr>";
+	      	html += '<td><img src='+obj[0].image[1]['#text']+ ' ></td>';  
+	      	html += "<td>"+obj[i].name+"</td>";
+	      	html += "<td><input type='submit' class='btn btn-primary' id='seemorebtn_"+i+"' value='See More...'' ></td>";
+      		html += "</tr>";
+	    }
+
+		html += "</table>";
+
+		$("#resutlContainer").html(html);
+
+	}
+
+});

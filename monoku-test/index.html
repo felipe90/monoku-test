@@ -6,16 +6,42 @@
 	<script src='js/jquery-1.11.2.min.js'></script>
 	<script src='js/bootstrap.min.js'></script>
 	
-	<title>JQuery get githubAPI by Ajax</title>
+	<title>Simple FM API Requets</title>
 </head>
 <body class="main">
 	<div class="container text-center">
-    <h1>Simple Github API Webapp</h1>
-	    <p>Enter a single Github username below and click the button to display profile info via JSON.</p>
-		<input type="text" class="form-control" name="ghusername" id="ghusername" placeholder="Github username..." required>
+    	<h1>Simple FM API Requets</h1>
+	    <p>Enter a single artist name to search.</p>
+		<input type="text" class="form-control" name="ghusername" id="artistName" placeholder="Song name ej. 'Adele'" required>
 		<br>
-		<input type="submit" class="btn btn-primary" id="ghsubmitbtn" value="Pull User Data" >
-	    <div id="ghapidata" class="clearfix"></div>
+		<input type="submit" class="btn btn-primary" id="searchbtn" value="Search ..." >
+		<br>
+		<div class="container" >
+			<div id="resutlContainer" class="resultclass"></div>
+		</div>
+	</div>
+
+
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Modal Header</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>Some text in the modal.</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+
+	  </div>
 	</div>
 	<script type="text/javascript" src='js/app.js'></script>
 </body> 
+
