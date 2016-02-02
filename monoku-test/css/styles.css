@@ -8,6 +8,11 @@ table
   border: none;
 }
 
+img
+{
+	border-radius: 100%;
+}
+
 a { 
   color: #8eadd2;
 }

@@ -20,21 +20,39 @@ $( function () {
   		}
 	});
 
-	//seemore button action 0
-	$("#seemorebtn_0").on("click",function (e) {
+	//clear search button 
+	$("#clearTxtBtn").on("click",function (e) {
 		e.preventDefault();
-		console.log(obj[0]);
+		console.log("asdasd");
+		
+		//reset search input
+		$( "#artistName" ).val('');
 
-		html = '<div id="myModal" class="modal fade" role="dialog">';
+		//reset modals container
+		$("#artistBioModal").html('');
+
+		//reset result contaniner
+		$("#resutlContainer").html('');
+
+	});
+
+
+	//render bootstrap modals
+	function showArtistBio (index, data) {
+		
+		html = '<div id="modal_'+index+'" class="modal fade" role="dialog">';
 		html += '<div class="modal-dialog">';
 		// Modal content
 		html += '<div class="modal-content">';
 		html += '<div class="modal-header">';
 		html += '<button type="button" class="close" data-dismiss="modal">&times;</button>';
-		html += '<h4 class="modal-title">Modal Header</h4>';
+		html += '<h4 class="modal-title">Artist: '+ data.name+' </h4>';
 		html += '</div>';
 		html += '<div class="modal-body">';
-		html += '<p>Some text in the modal.</p>';
+		html += '<img src="'+data.image[4]['#text']+'"  height="300" width=="300" />';
+		html += '<p>Listeners: '+data.listeners+'</p>';
+		html += '<p>Bio URL: <a href='+data.url+' >'+data.url+'</a></p>';
+		html += '<p>Streameble: '+data.streamable+'</p>';
 		html += '</div>';
 		html += '<div class="modal-footer">';
 		html += '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
@@ -44,9 +62,8 @@ $( function () {
 		html += '</div>';
 
 
-		//var  = $("#artistName").val();
-		//getLastFMData(url);
-	});
+		$("#artistBioModal").append(html);
+	}
 
 
 	// http resquest from lastFM
@@ -70,26 +87,25 @@ $( function () {
 		return artist;
 	}
 
-	// show artist biography
-	function showModalBio (artistData) {
-		html= "";
-	}
-
 	// render artist data table 
 	function showArtistData(dataArray){
 		obj = dataArray.artist;
 
+		//reset modals container
+		$("#artistBioModal").html("");
+
 		var html = "<br><table class='table-striped' style='width:100%; border: none;' border=1> ";
 	  	
-		html +=  "<tr><th>Image</th><th>Name</th><th>Actions</th></tr>"
-	
 	  	for (var i = 0; i < obj.length; i++) {
 
 	    	html += "<tr>";
-	      	html += '<td><img src='+obj[i].image[1]['#text']+ ' ></td>';  
-	      	html += "<td>"+obj[i].name+"</td>";
-	      	html += "<td><input type='submit' class='btn btn-primary' id='seemorebtn_"+i+"' value='See More...'' ></td>";
+	      	html += '<td><a href='+obj[i].url+' ><img src='+obj[i].image[2]['#text']+ ' ></td>';  
+	      	html += "<td><h2>"+obj[i].name+"</h2></td>";
+
+	      	html += "<td><buton type='button' class='btn btn-success btn.lg' data-toggle='modal' data-target='#modal_"+i+"'>See More...</button></td>";
       		html += "</tr>";
+
+      		showArtistBio(i, obj[i]);
 	    }
 
 		html += "</table>";
