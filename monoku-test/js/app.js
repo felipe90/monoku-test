@@ -1,16 +1,23 @@
 var obj; //data artits
+var artistName; //string to save artistname 
 
-$(function () {
+$( function () {
 
-	//search button action
-	$("#searchbtn").on("click",function (e) {
-		e.preventDefault();
-		var artistName = $("#artistName").val();
-
-		var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.search&artist='+artistName+'&limit=15&api_key=42f75f939105d2110d6a0daf27db431c&format=json';
+	//search input action
+	$( "#artistName" ).keypress( function( event ) {
+		if ( event.which == 13 ) {
+     		event.preventDefault();
+  		}
+  		else
+  		{
+			artistName = $("#artistName").val();
+			var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.search&artist='+artistName+'&limit=15&api_key=42f75f939105d2110d6a0daf27db431c&format=json';
 		
-		$('#resutlContainer').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>');
-		getLastFMData(url);
+
+			console.log(url);
+			$('#resutlContainer').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>');
+			getLastFMData(url);		
+  		}
 	});
 
 	//seemore button action 0
@@ -59,7 +66,7 @@ $(function () {
 	  	for (var i = 0; i < obj.length; i++) {
 
 	    	html += "<tr>";
-	      	html += '<td><img src='+obj[0].image[1]['#text']+ ' ></td>';  
+	      	html += '<td><img src='+obj[i].image[1]['#text']+ ' ></td>';  
 	      	html += "<td>"+obj[i].name+"</td>";
 	      	html += "<td><input type='submit' class='btn btn-primary' id='seemorebtn_"+i+"' value='See More...'' ></td>";
       		html += "</tr>";
