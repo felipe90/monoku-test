@@ -1,7 +1,13 @@
 var obj; //data artits
 var artistName; //string to save artistname 
 
+
+
+
 $( function () {
+
+
+	validatePrevSearch();
 
 	//search input action
 	$( "#artistName" ).keypress( function( event ) {
@@ -36,6 +42,21 @@ $( function () {
 
 	});
 
+
+	//back search validation
+	function validatePrevSearch() {
+
+		var tempName = $( "#artistName" ).val();
+		console.log(tempName);
+		if (tempName!='')
+		{
+			var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.search&artist='+tempName+'&limit=15&api_key=42f75f939105d2110d6a0daf27db431c&format=json';
+		
+			$('#resutlContainer').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>');
+			getLastFMData(url);
+		}
+
+	}
 
 	//render bootstrap modals
 	function showArtistBio (index, data) {
