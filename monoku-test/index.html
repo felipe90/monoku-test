@@ -4,14 +4,12 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/bootstrap.min.css" media="screen" charset="utf-8">
 	<link rel="stylesheet" href="css/styles.css" media="screen" charset="utf-8">
-	<script src='js/jquery-1.11.2.min.js'></script>
-	<script src='js/bootstrap.min.js'></script>
 	
 	<title>Simple FM API Requets</title>
 </head>
 <body class="main">
 	<div class="container text-center">
-    	<h1>Simple FM API Requets</h1>
+    	<h1>Simple Last.FM API Requets</h1>
 	    <p>Enter a single artist name to search.</p>
 		<input type="text" class="form-control" name="ghusername" id="artistName" placeholder="Artist name ej. 'Adele'" required>
 		<br>
@@ -20,27 +18,10 @@
 		</div>
 	</div>
 
+	<div id="artistBioModal"></div>
 
-	<!-- Modal -->
-	<div id="myModal" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Modal Header</h4>
-	      </div>
-	      <div class="modal-body">
-	        <p>Some text in the modal.</p>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	      </div>
-	    </div>
-
-	  </div>
-	</div>
+	<script src='js/jquery-1.11.2.min.js'></script>
+	<script src='js/bootstrap.min.js'></script>
 	<script type="text/javascript" src='js/app.js'></script>
 </body> 
 

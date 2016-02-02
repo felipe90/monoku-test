@@ -24,6 +24,26 @@ $( function () {
 	$("#seemorebtn_0").on("click",function (e) {
 		e.preventDefault();
 		console.log(obj[0]);
+
+		html = '<div id="myModal" class="modal fade" role="dialog">';
+		html += '<div class="modal-dialog">';
+		// Modal content
+		html += '<div class="modal-content">';
+		html += '<div class="modal-header">';
+		html += '<button type="button" class="close" data-dismiss="modal">&times;</button>';
+		html += '<h4 class="modal-title">Modal Header</h4>';
+		html += '</div>';
+		html += '<div class="modal-body">';
+		html += '<p>Some text in the modal.</p>';
+		html += '</div>';
+		html += '<div class="modal-footer">';
+		html += '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+		html += '</div>';
+		html += '</div>';
+		html += '</div>';
+		html += '</div>';
+
+
 		//var  = $("#artistName").val();
 		//getLastFMData(url);
 	});
